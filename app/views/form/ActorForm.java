@@ -30,9 +30,8 @@ public class ActorForm {
     this.birthplaceId = birthplaceId;
   }
 
-
   public List<ValidationError> validate() {
-    System.out.println("ActorForm#validate IN");
+
     List<ValidationError> errors = new ArrayList<ValidationError>();
 
     if (name == null || name.length() == 0) {
@@ -47,11 +46,9 @@ public class ActorForm {
     if (StringUtils.isNotEmpty(blood) && !blood.matches("A|B|AB|O")) {
       errors.add(new ValidationError("blood", Messages.get("actor.blood.kind")));
     }
-
     if (StringUtils.isNotEmpty(birthday) && !birthday.matches("\\d{4}-\\d{2}-\\d{2}")) {
       errors.add(new ValidationError("birthday", Messages.get("actor.birthday.pattern")));
     }
-
     if (StringUtils.isNotEmpty(birthplaceId)) {
       Integer tmpB = Integer.valueOf(birthplaceId);
       if (tmpB < 1 && tmpB > 47) {
@@ -64,11 +61,8 @@ public class ActorForm {
       return errors;
     }
 
-    System.out.println("ActorForm#validate OUT");
-
     return null;
   }
-
 
   @Override
   public String toString() {

@@ -39,9 +39,6 @@ public class Application extends Controller {
   public Result create() {
     logger.info("Application#create");
     ActorForm form = new ActorForm();
-    form.name = "test name";
-    form.height = "177";
-    form.blood = "A";
     Form<ActorForm> formData = Form.form(ActorForm.class).fill(form);
     return ok(create.render("Actor Create", formData));
   }
@@ -49,9 +46,6 @@ public class Application extends Controller {
   public Result save() {
     logger.info("Application#save");
     Form<ActorForm> formData = Form.form(ActorForm.class).bindFromRequest();
-    if (formData != null) {
-      System.out.println("formData: " + formData.toString());
-    }
     if (formData.hasErrors()) {
       flash("error", Messages.get("actor.validation.error"));
       return badRequest(create.render("retry", formData));
@@ -59,8 +53,7 @@ public class Application extends Controller {
       Actor actor = Actor.convertToModel(formData.get());
       Ebean.execute(()->{
         SqlRow row = Ebean.createSqlQuery("SELECT MAX(id) AS cnt FROM actor").findUnique();
-        Long id = row.getLong("cnt");
-        actor.id = id + 1L;
+        actor.id = row.getLong("cnt") + 1L;
         actor.save();
       });
       flash("success", Messages.get("actor.save.success"));
