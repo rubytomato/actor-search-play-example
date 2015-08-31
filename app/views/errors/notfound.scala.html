@@ -1,0 +1,12 @@
+@(message: String, detail: String, status: Int)
+
+@main("Not Found", "Not Found") {
+    <div class="row">
+      <div class="col-md-12 well">
+        <h2>@status : @message</h2>
+        <div class="alert alert-error">
+          @detail
+        </div>
+      </div>
+    </div>
+}

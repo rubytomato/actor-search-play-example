@@ -54,8 +54,7 @@ public class Application extends Controller {
       Ebean.execute(()->{
         SqlRow row = Ebean.createSqlQuery("SELECT MAX(id) AS cnt FROM actor").findUnique();
         Long cnt = row.getLong("cnt");
-        cnt = cnt == null ? 0L : cnt;
-        actor.id = cnt + 1L;
+        actor.id = cnt == null ? 1L : (cnt + 1L);
         actor.save();
       });
       flash("success", Messages.get("actor.save.success"));
@@ -171,6 +170,13 @@ public class Application extends Controller {
     }
 
     return redirect(routes.Application.index());
+  }
+
+  public Result error500(Integer f) {
+    if (f == 1) {
+      throw new RuntimeException("Internal Server Error");
+    }
+    return ok();
   }
 
 }
