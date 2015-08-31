@@ -1,0 +1,41 @@
+@(message: String, actor: models.Actor)
+
+@import play.i18n._
+@import utils.DateParser
+
+@main("Actor Detail", "俳優詳細") {
+    <div class="row">
+      <div class="col-md-12">
+        <table class="table">
+          <tr>
+            <th class="col-md-3 active">@Messages.get("actor.id")</th>
+            <td class="col-md-9">@actor.id</td>
+          </tr>
+          <tr>
+            <th class="col-md-3 active">@Messages.get("actor.name")</th>
+            <td class="col-md-9">@actor.name</td>
+          </tr>
+          <tr>
+            <th class="col-md-3 active">@Messages.get("actor.height")</th>
+            <td class="col-md-9">@if(actor.height != null) {@actor.height} else {---}</td>
+          </tr>
+          <tr>
+            <th class="col-md-3 active">@Messages.get("actor.blood")</th>
+            <td class="col-md-9">@if(actor.blood) {@actor.blood.toLowerCase} else {---}</td>
+          </tr>
+          <tr>
+            <th class="col-md-3 active">@Messages.get("actor.birthday")</th>
+            <td class="col-md-9">@DateParser.format(actor.birthday)</td>
+          </tr>
+          <tr>
+            <th class="col-md-3 active">@Messages.get("actor.birthplace")</th>
+            <td class="col-md-9">@actor.birthplaceId</td>
+          </tr>
+          <tr>
+            <th class="col-md-3 active">@Messages.get("actor.update_at")</th>
+            <td class="col-md-9">@actor.updateAt.format("yyyy-MM-dd HH:mm:ss")</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+}

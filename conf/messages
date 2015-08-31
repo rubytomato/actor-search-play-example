@@ -1,0 +1,19 @@
+# label name
+actor.id=ID
+actor.name=名前
+actor.height=身長
+actor.blood=血液型
+actor.birthday=誕生日
+actor.birthplace=出生地
+actor.update_at=更新日
+
+# validation message
+actor.validation.error=Please correct errors above.
+actor.save.success=正常に登録できました
+actor.delete.success=正常に削除できました
+actor.delete.error=削除に失敗しました
+actor.name.required=名前は必須です
+actor.height.range=身長は{0}から{1}の範囲で入力してください
+actor.blood.kind=血液型はA,B,AB,Oのどれかを入力してください
+actor.birthday.pattern=誕生日は'yyyy-MM-dd'の形式で入力してください
+actor.birthplace.range=出身地は北海道から沖縄までの都道府県を選んでください
