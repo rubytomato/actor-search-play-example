@@ -53,7 +53,9 @@ public class Application extends Controller {
       Actor actor = Actor.convertToModel(formData.get());
       Ebean.execute(()->{
         SqlRow row = Ebean.createSqlQuery("SELECT MAX(id) AS cnt FROM actor").findUnique();
-        actor.id = row.getLong("cnt") + 1L;
+        Long cnt = row.getLong("cnt");
+        cnt = cnt == null ? 0L : cnt;
+        actor.id = cnt + 1L;
         actor.save();
       });
       flash("success", Messages.get("actor.save.success"));
