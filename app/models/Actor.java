@@ -54,7 +54,7 @@ public class Actor extends Model {
     this.birthplaceId = birthplaceId;
   }
 
-  public static Finder<Long, Actor> finder = new Finder<Long, Actor>(Actor.class);
+  public static Find<Long, Actor> finder = new Find<Long, Actor>(){};
 
   public static Actor convertToModel(ActorForm form) {
     Actor actor = new Actor();

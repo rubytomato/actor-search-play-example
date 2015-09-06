@@ -34,7 +34,7 @@ public class Prefecture extends Model {
     return Prefecture.finder.order("id").findList();
   }
 
-  public static Finder<Long, Prefecture> finder = new Finder<Long, Prefecture>(Prefecture.class);
+  public static Find<Long, Prefecture> finder = new Find<Long, Prefecture>(){};
 
   @Override
   public String toString() {
